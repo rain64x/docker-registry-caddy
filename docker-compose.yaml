@@ -1,0 +1,19 @@
+services:
+  registry:
+    image: registry
+    container_name: private_registry
+    environment:
+      REGISTRY_STORAGE_FILESYSTEM_ROOTDIRECTORY: /data
+      REGISTRY_HTTP_SECRET: rAnDomP4SSw04D
+    volumes:
+      - ./data:/data
+    ports:
+      - 5000:5000
+    restart: unless-stopped
+    networks:
+      rain_network:
+        ipv4_address: 172.20.0.8
+
+networks:
+  rain_network:
+    external: true
